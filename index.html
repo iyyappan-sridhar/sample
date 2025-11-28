@@ -1,296 +1,395 @@
 {% extends "base.html" %}
 
-{% block title %}IJGTSS - Account{% endblock %}
+{% block title %}IJGTSS - International Journal of Global Trends in Smart Science and Engineering{% endblock %}
 
 {% block content %}
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<style>
-* {
-    font-family: 'Poppins', sans-serif !important;
-    box-sizing: border-box;
-}
-
-/* ===== PAGE BACKGROUND ===== */
-.page-wrapper {
-    min-height: 100vh;
-    background: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-    position: relative;
-    overflow: hidden;
-}
-
-/* ===== SPLIT WRAPPER ===== */
-.split-wrapper {
-    width: 100%;
-    max-width: 1100px;
-    display: flex;
-    gap: 0;
-    z-index: 10;
-    transition: .4s;
-}
-
-/* ===== LEFT SIGNUP FORM ===== */
-.left-section {
-    width: 55%;
-    padding: 50px 45px;
-}
-
-.left-section h2 {
-    font-size: 32px;
-    font-weight: 700;
-    color: #1a4444;
-    margin-bottom: 20px;
-}
-
-.input-group {
-    margin-bottom: 16px;
-}
-
-.input-group input {
-    width: 100%;
-    padding: 16px 18px;
-    border-radius: 12px;
-    border: 2px solid #b9b7ff;
-    background: #ffffff;
-    font-size: 15px;
-    transition: .3s;
-}
-
-.input-group input:focus {
-    border-color: #7f7cff;
-    box-shadow: 0px 0px 6px #c6c5ff;
-}
-
-/* Signup button */
-.submit-btn {
-    width: 100%;
-    padding: 15px;
-    background: #1a4444;
-    color: white;
-    border: none;
-    border-radius: 12px;
-    font-size: 17px;
-    font-weight: 700;
-    cursor: pointer;
-    margin-top: 15px;
-}
-
-/* ===== RIGHT LOGIN SIDE ===== */
-.right-section {
-    width: 45%;
-    background: #1a4444;
-    border-top-left-radius: 360px;
-    border-bottom-left-radius: 360px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    text-align: center;
-    padding: 60px 40px;
-}
-
-.right-section h1 {
-    font-size: 44px;
-    font-weight: 800;
-    color: white;
-}
-
-.right-section p {
-    margin-top: 10px;
-    font-size: 16px;
-    color: #e6e6e6;
-}
-
-/* Right side login button */
-.right-login-btn {
-    margin-top: 30px;
-    padding: 14px 32px;
-    border-radius: 12px;
-    border: 2px solid #ffb84d;
-    background: transparent;
-    color: white;
-    font-size: 17px;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.right-login-btn:hover {
-    background: #ffb84d;
-    color: #1a4444;
-}
-
-/* ===== LOGIN CENTER POPUP ===== */
-#login-center-mode {
-    display: none;
-    width: 100%;
-    max-width: 420px;
-    margin: auto;
-    padding: 35px 30px;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    animation: popup .3s ease-out;
-}
-
-@keyframes popup {
-    from { transform: scale(.8); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
-.login-center-title {
-    text-align: center;
-    font-size: 28px;
-    color: #1a4444;
-    margin-bottom: 20px;
-}
-
-.login-center-btn {
-    width: 100%;
-    padding: 14px;
-    border-radius: 12px;
-    border: none;
-    background: #1a4444;
-    color: white;
-    font-size: 16px;
-    margin-top: 10px;
-}
-
-/* Back to Signup button */
-.back-signup {
-    margin-top: 18px;
-    width: 100%;
-    padding: 12px;
-    border-radius: 12px;
-    border: 2px solid #1a4444;
-    background: transparent;
-    color: #1a4444;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.back-signup:hover {
-    background: #1a4444;
-    color: white;
-}
-
-.hidden { display: none !important; }
-
-/* ========== FULL RESPONSIVE ========== */
-@media (max-width: 1150px) {
-    .right-section h1 { font-size: 36px; }
-}
-
-@media (max-width: 900px) {
-    .split-wrapper {
-        flex-direction: column;
-        width: 95%;
-        text-align: center;
+  <style>
+    /* Container */
+    .account-page-containers {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      margin-top: 3%;
     }
 
-    .left-section, .right-section {
+    /* Card */
+    .account-page-card {
+      background: rgba(35, 87, 87, 0.801);
+      padding: 0;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(102, 126, 234, 0.3);
+      width: 100%;
+      max-width: 480px;
+      overflow: hidden;
+      animation: fadeIn 0.6s ease-in-out;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Tab Navigation */
+    .tab-navigation {
+      display: flex;
+      background: rgba(0, 0, 0, 0.1);
+      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .tab-button {
+      flex: 1;
+      padding: 20px;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.6);
+      border: none;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .tab-button:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .tab-button.active {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+
+    .tab-button.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: #5abba1;
+      animation: slideIn 0.3s ease;
+    }
+
+    /* Tab Content */
+    .tab-content {
+      padding: 40px 30px;
+      text-align: center;
+    }
+
+    .tab-panel {
+      display: none;
+      animation: fadeInContent 0.4s ease;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    /* Title */
+    .account-page-title {
+      font-size: 28px;
+      margin-bottom: 30px;
+      font-weight: 700;
+      color: white;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Forms */
+    .login-page-form,
+    .register-page-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+    }
+
+    /* Inputs */
+    .login-page-input,
+    .register-page-input {
+      padding: 16px 20px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 12px;
+      font-size: 16px;
+      background: rgba(255, 255, 255, 0.9);
+      color: #333;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .login-page-input::placeholder,
+    .register-page-input::placeholder {
+      color: #888;
+    }
+
+    .login-page-input:focus,
+    .register-page-input:focus {
+      border-color: #ffd700;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* Buttons */
+    .login-page-button {
+      padding: 16px;
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+      color: rgba(37, 150, 190, 1);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .login-page-button:hover:not(:disabled) {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      color: rgba(25, 130, 170, 1);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .login-page-button:active {
+      transform: translateY(0);
+    }
+
+    .login-page-button:disabled {
+      background: linear-gradient(135deg, #bbb 0%, #999 100%);
+      color: #666;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .register-page-button {
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      backdrop-filter: blur(10px);
+    }
+
+    .register-page-button:hover {
+      background: rgba(255, 255, 255, 0.3);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .register-page-button:active {
+      transform: translateY(0);
+    }
+
+    /* Forgot Password Link */
+    .forgot-password-link {
+      color: #bbe31bf7;
+      text-decoration: none;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .forgot-password-link:hover {
+      color: #ffed4e;
+      text-decoration: underline;
+      transform: translateY(-1px);
+    }
+
+    /* Flash Messages */
+    .flash-message {
+      background: rgba(255, 255, 255, 0.95);
+      color: #d32f2f;
+      padding: 15px 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      font-weight: 500;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      animation: slideDown 0.4s ease;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { 
+        opacity: 0; 
+        transform: translateY(20px) scale(0.95); 
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+      }
+    }
+
+    @keyframes fadeInContent {
+      from { 
+        opacity: 0; 
+        transform: translateY(10px);
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideIn {
+      from { 
+        width: 0;
+        left: 50%;
+      }
+      to { 
         width: 100%;
-        border-radius: 20px;
+        left: 0;
+      }
     }
 
-    .right-section {
-        padding: 50px 25px;
-    }
-}
-
-@media (max-width: 600px) {
-    .left-section h2 { font-size: 26px; }
-    .right-section h1 { font-size: 30px; }
-}
-
-@media (max-width: 420px) {
-    .input-group input {
-        padding: 13px 14px;
-        font-size: 14px;
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .submit-btn, .login-center-btn {
-        padding: 12px;
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .account-page-containers {
+        padding: 15px;
+        min-height: 70vh;
+      }
+      
+      .account-page-card {
+        border-radius: 16px;
+        max-width: 100%;
+      }
+      
+      .tab-button {
+        padding: 16px;
+        font-size: 16px;
+      }
+
+      .tab-content {
+        padding: 30px 20px;
+      }
+      
+      .account-page-title {
+        font-size: 24px;
+        margin-bottom: 25px;
+      }
+      
+      .login-page-form,
+      .register-page-form {
+        gap: 16px;
+      }
+      
+      .login-page-input,
+      .register-page-input {
+        padding: 14px 16px;
         font-size: 15px;
+      }
+      
+      .login-page-button,
+      .register-page-button {
+        padding: 14px;
+        font-size: 15px;
+      }
     }
-}
+  </style>
+</head>
+<body>
+  <!-- Account Page -->
+  <div class="account-page-containers">
+    <div class="account-page-card">
+      
+      <!-- Tab Navigation -->
+      <div class="tab-navigation">
+        <button class="tab-button active" onclick="switchTab('login')">Login</button>
+        <button class="tab-button" onclick="switchTab('register')">Register</button>
+      </div>
 
-@media (max-width: 350px) {
-    .left-section { padding: 20px; }
-    .right-section { padding: 35px 20px; }
-}
-</style>
+      <div class="tab-content">
+        <!-- Flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="flash-message">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
 
-<div class="page-wrapper">
-
-    <!-- SIGN UP PAGE (DEFAULT) -->
-    <div id="signup-layout" class="split-wrapper">
-
-        <!-- LEFT SIGNUP FORM -->
-        <div class="left-section">
-            <h2>Create Account</h2>
-
-            <form method="POST" action="{{ url_for('account') }}">
-                <input type="hidden" name="action" value="register">
-
-                <div class="input-group"><input type="text" name="given_name" placeholder="Given Name" required></div>
-                <div class="input-group"><input type="text" name="family_name" placeholder="Family Name" required></div>
-                <div class="input-group"><input type="text" name="affiliation" placeholder="Affiliation" required></div>
-                <div class="input-group"><input type="text" name="country" placeholder="Country" required></div>
-                <div class="input-group"><input type="email" name="email" placeholder="Email Address" required></div>
-                <div class="input-group"><input type="text" name="username" placeholder="Username" required></div>
-                <div class="input-group"><input type="password" name="password" placeholder="Password" required></div>
-                <div class="input-group"><input type="password" name="confirm_password" placeholder="Confirm Password" required></div>
-
-                <button class="submit-btn">Sign Up</button>
-            </form>
-        </div>
-
-        <!-- RIGHT LOGIN BOX -->
-        <div class="right-section">
-            <h1>Get Started</h1>
-            <p>Already have an account?</p>
-
-            <button class="right-login-btn" onclick="showLogin()">Log in</button>
-        </div>
-
-    </div>
-
-    <!-- LOGIN POPUP CENTER -->
-    <div id="login-center-mode">
-        <h2 class="login-center-title">Login</h2>
-
-        <form method="POST" action="{{ url_for('account') }}">
+        <!-- Login Panel -->
+        <div id="login-panel" class="tab-panel active">
+          <h2 class="account-page-title">Welcome Back</h2>
+          <form method="POST" action="{{ url_for('account') }}" class="login-page-form">
             <input type="hidden" name="action" value="login">
+            <input type="email" name="email" placeholder="Enter your email" required class="login-page-input" />
+            <input type="password" name="password" placeholder="Enter your password" required class="login-page-input" />
+            <button type="submit" class="login-page-button">Login</button>
+            <a href="{{ url_for('forgot_password') }}" class="forgot-password-link">Forgot Password?</a>
+          </form>
+        </div>
 
-            <div class="input-group"><input type="email" name="email" placeholder="Email Address" required></div>
-            <div class="input-group"><input type="password" name="password" placeholder="Password" required></div>
+        <!-- Register Panel -->
+        <div id="register-panel" class="tab-panel">
+          <h2 class="account-page-title">Create Account</h2>
+          <form method="POST" action="{{ url_for('account') }}" class="register-page-form">
+            <input type="hidden" name="action" value="register">
+            <input type="text" name="given_name" placeholder="Given Name" required class="register-page-input" />
+            <input type="text" name="family_name" placeholder="Family Name" required class="register-page-input" />
+            <input type="text" name="affiliation" placeholder="Affiliation" required class="register-page-input" />
+            <input type="text" name="country" placeholder="Country" required class="register-page-input" />
+            <input type="email" name="email" placeholder="Email Address" required class="register-page-input" />
+            <input type="text" name="username" placeholder="Username" required class="register-page-input" />
+            <input type="password" name="password" placeholder="Password" required class="register-page-input" />
+            <input type="password" name="confirm_password" placeholder="Repeat Password" required class="register-page-input" />
+            <button type="submit" class="register-page-button">Register</button>
+          </form>
+        </div>
+      </div>
 
-            <button class="login-center-btn">Login</button>
-        </form>
-
-        <!-- BACK TO SIGN UP BUTTON -->
-        <button class="back-signup" onclick="showSignup()">Create Account</button>
     </div>
+  </div>
 
-</div>
-
-<script>
-function showLogin() {
-    document.getElementById("signup-layout").classList.add("hidden");
-    document.getElementById("login-center-mode").style.display = "block";
-}
-
-function showSignup() {
-    document.getElementById("login-center-mode").style.display = "none";
-    document.getElementById("signup-layout").classList.remove("hidden");
-}
-</script>
+  <script>
+    function switchTab(tabName) {
+      // Remove active class from all tabs and panels
+      const tabButtons = document.querySelectorAll('.tab-button');
+      const tabPanels = document.querySelectorAll('.tab-panel');
+      
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      tabPanels.forEach(panel => panel.classList.remove('active'));
+      
+      // Add active class to selected tab and panel
+      const activeButton = Array.from(tabButtons).find(btn => 
+        btn.textContent.toLowerCase() === tabName
+      );
+      const activePanel = document.getElementById(tabName + '-panel');
+      
+      if (activeButton) activeButton.classList.add('active');
+      if (activePanel) activePanel.classList.add('active');
+    }
+  </script>
 
 {% endblock %}
+</body>
+</html>
