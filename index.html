@@ -1,0 +1,296 @@
+{% extends "base.html" %}
+
+{% block title %}IJGTSS - Account{% endblock %}
+
+{% block content %}
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    font-family: 'Poppins', sans-serif !important;
+    box-sizing: border-box;
+}
+
+/* ===== PAGE BACKGROUND ===== */
+.page-wrapper {
+    min-height: 100vh;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ===== SPLIT WRAPPER ===== */
+.split-wrapper {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    gap: 0;
+    z-index: 10;
+    transition: .4s;
+}
+
+/* ===== LEFT SIGNUP FORM ===== */
+.left-section {
+    width: 55%;
+    padding: 50px 45px;
+}
+
+.left-section h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1a4444;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 16px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 16px 18px;
+    border-radius: 12px;
+    border: 2px solid #b9b7ff;
+    background: #ffffff;
+    font-size: 15px;
+    transition: .3s;
+}
+
+.input-group input:focus {
+    border-color: #7f7cff;
+    box-shadow: 0px 0px 6px #c6c5ff;
+}
+
+/* Signup button */
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background: #1a4444;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+/* ===== RIGHT LOGIN SIDE ===== */
+.right-section {
+    width: 45%;
+    background: #1a4444;
+    border-top-left-radius: 360px;
+    border-bottom-left-radius: 360px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    padding: 60px 40px;
+}
+
+.right-section h1 {
+    font-size: 44px;
+    font-weight: 800;
+    color: white;
+}
+
+.right-section p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #e6e6e6;
+}
+
+/* Right side login button */
+.right-login-btn {
+    margin-top: 30px;
+    padding: 14px 32px;
+    border-radius: 12px;
+    border: 2px solid #ffb84d;
+    background: transparent;
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.right-login-btn:hover {
+    background: #ffb84d;
+    color: #1a4444;
+}
+
+/* ===== LOGIN CENTER POPUP ===== */
+#login-center-mode {
+    display: none;
+    width: 100%;
+    max-width: 420px;
+    margin: auto;
+    padding: 35px 30px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    animation: popup .3s ease-out;
+}
+
+@keyframes popup {
+    from { transform: scale(.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.login-center-title {
+    text-align: center;
+    font-size: 28px;
+    color: #1a4444;
+    margin-bottom: 20px;
+}
+
+.login-center-btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    background: #1a4444;
+    color: white;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* Back to Signup button */
+.back-signup {
+    margin-top: 18px;
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: 2px solid #1a4444;
+    background: transparent;
+    color: #1a4444;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.back-signup:hover {
+    background: #1a4444;
+    color: white;
+}
+
+.hidden { display: none !important; }
+
+/* ========== FULL RESPONSIVE ========== */
+@media (max-width: 1150px) {
+    .right-section h1 { font-size: 36px; }
+}
+
+@media (max-width: 900px) {
+    .split-wrapper {
+        flex-direction: column;
+        width: 95%;
+        text-align: center;
+    }
+
+    .left-section, .right-section {
+        width: 100%;
+        border-radius: 20px;
+    }
+
+    .right-section {
+        padding: 50px 25px;
+    }
+}
+
+@media (max-width: 600px) {
+    .left-section h2 { font-size: 26px; }
+    .right-section h1 { font-size: 30px; }
+}
+
+@media (max-width: 420px) {
+    .input-group input {
+        padding: 13px 14px;
+        font-size: 14px;
+    }
+
+    .submit-btn, .login-center-btn {
+        padding: 12px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 350px) {
+    .left-section { padding: 20px; }
+    .right-section { padding: 35px 20px; }
+}
+</style>
+
+<div class="page-wrapper">
+
+    <!-- SIGN UP PAGE (DEFAULT) -->
+    <div id="signup-layout" class="split-wrapper">
+
+        <!-- LEFT SIGNUP FORM -->
+        <div class="left-section">
+            <h2>Create Account</h2>
+
+            <form method="POST" action="{{ url_for('account') }}">
+                <input type="hidden" name="action" value="register">
+
+                <div class="input-group"><input type="text" name="given_name" placeholder="Given Name" required></div>
+                <div class="input-group"><input type="text" name="family_name" placeholder="Family Name" required></div>
+                <div class="input-group"><input type="text" name="affiliation" placeholder="Affiliation" required></div>
+                <div class="input-group"><input type="text" name="country" placeholder="Country" required></div>
+                <div class="input-group"><input type="email" name="email" placeholder="Email Address" required></div>
+                <div class="input-group"><input type="text" name="username" placeholder="Username" required></div>
+                <div class="input-group"><input type="password" name="password" placeholder="Password" required></div>
+                <div class="input-group"><input type="password" name="confirm_password" placeholder="Confirm Password" required></div>
+
+                <button class="submit-btn">Sign Up</button>
+            </form>
+        </div>
+
+        <!-- RIGHT LOGIN BOX -->
+        <div class="right-section">
+            <h1>Get Started</h1>
+            <p>Already have an account?</p>
+
+            <button class="right-login-btn" onclick="showLogin()">Log in</button>
+        </div>
+
+    </div>
+
+    <!-- LOGIN POPUP CENTER -->
+    <div id="login-center-mode">
+        <h2 class="login-center-title">Login</h2>
+
+        <form method="POST" action="{{ url_for('account') }}">
+            <input type="hidden" name="action" value="login">
+
+            <div class="input-group"><input type="email" name="email" placeholder="Email Address" required></div>
+            <div class="input-group"><input type="password" name="password" placeholder="Password" required></div>
+
+            <button class="login-center-btn">Login</button>
+        </form>
+
+        <!-- BACK TO SIGN UP BUTTON -->
+        <button class="back-signup" onclick="showSignup()">Create Account</button>
+    </div>
+
+</div>
+
+<script>
+function showLogin() {
+    document.getElementById("signup-layout").classList.add("hidden");
+    document.getElementById("login-center-mode").style.display = "block";
+}
+
+function showSignup() {
+    document.getElementById("login-center-mode").style.display = "none";
+    document.getElementById("signup-layout").classList.remove("hidden");
+}
+</script>
+
+{% endblock %}
